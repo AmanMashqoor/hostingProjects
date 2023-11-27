@@ -26,16 +26,18 @@ mongoose
 
 //Middleware for handling CORS Policy
 //Option 1: Allow all origins with Default of cors(*) 
-app.use(cors());
+// app.use(cors());
 
 //Option 2: Allow custom origins
-// app.use(
-//     cors({
-//         origins: "*",
-//         methods:['GET', 'POST', 'PUT', 'DELETE'],
-//         allowedHeaders:['Content-Type'],
-//     })
-// ); 
+const origin = ['https://6564b14ad8636c033af39ec8--peaceful-cheesecake-023fc6.netlify.app', 'https://sponsorserver.onrender.com']; 
+app.use(cors({
+  origin: (origin, callback) => {
+    if (origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }}
+})); 
 
 app.get('/express', (request, response) => {
     console.log(request);

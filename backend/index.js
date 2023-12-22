@@ -29,7 +29,7 @@ mongoose
 // app.use(cors());
 
 // Option 2: Allow custom origins
-const origin = ['https://65853ebd58d63a9a9720bb33--grand-palmier-d75ed1.netlify.app', 'https://sponsorserver.onrender.com']; //https://server-backend-ujq6.onrender.com 
+const origin = ['https://65853ebd58d63a9a9720bb33--grand-palmier-d75ed1.netlify.app', 'https://server-backend-ujq6.onrender.com']; 
 app.use(cors({
   origin: (origin, callback) => {
     if (origin) {

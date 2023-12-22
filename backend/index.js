@@ -3,7 +3,7 @@ import cors from "cors";
 import {PORT, mongoDBURL} from "./config.js"; 
 import mongoose from "mongoose";
 import auth from './routes/auth.js'
-import sponsorRoute from './routes/sponsorRoute.js';
+// import sponsorRoute from './routes/sponsorRoute.js';
 import errorHandler from './middleware/errorHandler.js';
 import undefinedRouteHandler from './middleware/undefinedRoute.js';
 
@@ -26,18 +26,16 @@ mongoose
 
 //Middleware for handling CORS Policy
 //Option 1: Allow all origins with Default of cors(*) 
-// app.use(cors());
+app.use(cors());
 
-//Option 2: Allow custom origins
-const origin = ['https://6564b14ad8636c033af39ec8--peaceful-cheesecake-023fc6.netlify.app', 'https://sponsorserver.onrender.com']; 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }}
-})); 
+// Option 2: Allow custom origins
+// app.use(
+//     cors({
+//         origin: "*",
+//         methods:['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders:['Content-Type'],
+//     })
+// ); 
 
 app.get('/express', (request, response) => {
     console.log(request);
@@ -46,7 +44,7 @@ app.get('/express', (request, response) => {
 
 app.use('/auth', auth) //for signup and login authentication
 
-app.use('/sponsor', sponsorRoute); //for performing CRUD operations within the website 
+// app.use('/sponsor', sponsorRoute); //for performing CRUD operations within the website 
 
 // Apply the middleware for handling undefined routes
 app.use(undefinedRouteHandler);
